@@ -1,0 +1,3 @@
+rootProject.name = 'Traian'
+
+include ':app'
