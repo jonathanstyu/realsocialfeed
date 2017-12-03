@@ -24,15 +24,17 @@ export default class AppWrapper extends Component<{}> {
 
   componentWillMount = () => {
     var that = this;
-    loadState().then((state) => {
-      var store = createStore(traianApp, state, applyMiddleware(logger));
-      store.subscribe(() => {
-        saveState(store.getState())
-      });
-
-      that.unsubscribe = store.subscribe(()=> {return null});
-      that.setState({store: store, loading: false})
-    })
+    var store = createStore(traianApp, applyMiddleware(logger));
+    that.setState({store: store, loading: false})
+    // loadState().then((state) => {
+    //   var store = createStore(traianApp, state, applyMiddleware(logger));
+    //   store.subscribe(() => {
+    //     saveState(store.getState())
+    //   });
+    //
+    //   that.unsubscribe = store.subscribe(()=> {return null});
+    //   that.setState({store: store, loading: false})
+    // })
   }
 
   componentWillUnmount = () => {

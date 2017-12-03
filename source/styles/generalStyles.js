@@ -19,21 +19,26 @@ export const newsfeed = StyleSheet.create({
     flex: 1,
   },
   mainCellLayout: {
-    margin: 10,
+    marginTop: 5,
+    marginBottom: 5,
     flexDirection: 'column',
   },
   avatarText: {
     fontWeight: "bold",
+    padding: 10
+  },
+  textContainer: {
+    padding: 10
   },
   titleText: {
     fontWeight: "bold",
-    fontSize: 16,
-    padding: 5
+    fontSize: 16
   },
   image: {
-    margin: 10,
-    width: 400,
-    height: 240,
+    marginTop: 5,
+    marginBottom: 5,
+    width: null,
+    height: 200,
     resizeMode: Image.resizeMode.contain
   }
 })
@@ -60,6 +65,6 @@ export const chatroom = StyleSheet.create({
 
 export const chat = StyleSheet.create({
   chat: {
-    
+
   }
 })

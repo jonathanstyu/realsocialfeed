@@ -11,7 +11,7 @@ import {chatroom} from '../styles/generalStyles';
 
 import RealChatView from './realchatview';
 
-export default class RealChatRoom extends Component<{}> {
+class RealChatRoom extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ export default class RealChatRoom extends Component<{}> {
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createChatThreads(30)
+      threads: FeedItemGenerator.createChatThreads(20, this.props.friends)
     })
   }
 
@@ -62,6 +62,7 @@ export default class RealChatRoom extends Component<{}> {
   }
 
   render() {
+    console.log(this.state.threads);
     return (
       <FlatList style={chatroom.list}
         data={this.state.threads}
@@ -71,3 +72,17 @@ export default class RealChatRoom extends Component<{}> {
     )
   }
 }
+
+mapStateToProps = (state) => {
+  return {
+    friends: state.get('friends')
+  }
+}
+
+mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RealChatRoom)

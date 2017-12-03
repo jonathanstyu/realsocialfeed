@@ -9,7 +9,7 @@ export default class RealChatView extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      chats: FeedItemGenerator.createChat(this.props.sender, 5)
+      messages: FeedItemGenerator.createChat(this.props.sender, 5)
     }
     this.componentDidMount = this.componentDidMount.bind(this);
   }
@@ -18,15 +18,22 @@ export default class RealChatView extends Component<{}> {
 
   }
 
+  _onSend = (messages=[]) => {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+  }
+
   render() {
     var that = this;
     return(
       <GiftedChat
         style={chat.chat}
-        messages={that.state.chats}
+        messages={that.state.messages}
+        onSend={(messages) => this._onSend(messages)}
         user={{
-          name: that.props.sender,
-          _id: 5
+          name: "Me",
+          _id: 1
         }}
       />
     )

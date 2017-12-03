@@ -1,13 +1,13 @@
 import {Map, Set} from 'immutable';
-import _ from 'lodash'
-
-const initialState = {
-  selectedTab: "RealNewsFeed",
-};
+import _ from 'lodash';
+import FeedItemGenerator from '../data/feedItemGenerator'
 
 const traianApp = (state, action) => {
   if (typeof state == 'undefined') {
-    return Map(initialState);
+    return Map({
+      selectedTab: "RealNewsFeed",
+      friends: FeedItemGenerator.makeFriends(20)
+    });
   }
 
   switch (action.type) {

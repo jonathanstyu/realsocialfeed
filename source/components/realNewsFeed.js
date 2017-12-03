@@ -21,7 +21,7 @@ class RealNewsFeed extends Component<{}> {
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createFeedStories(30)
+      threads: FeedItemGenerator.createFeedStories(30, this.props.friends)
     })
   }
 
@@ -42,15 +42,17 @@ class RealNewsFeed extends Component<{}> {
           source={{uri: item.image}}
           backgroundColor='darkred'
           />
-        <Text style={newsfeed.titleText}>{item.headline}</Text>
-        <Text>{item.body}</Text>
-        <Text>{item.image}</Text>
+        <View style={newsfeed.textContainer}>
+          <Text style={newsfeed.titleText}>{item.headline}</Text>
+          <Text>{item.body}</Text>
+          <Text>{item.image}</Text>
+        </View>
       </View>
     )
   }
 
   _endReached = async () => {
-    var newItems = FeedItemGenerator.create(30);
+    var newItems = FeedItemGenerator.createFeedStories(30, this.props.friends);
     this.setState({
       threads: this.state['threads'].concat(newItems)
     })
@@ -71,7 +73,7 @@ class RealNewsFeed extends Component<{}> {
 
 mapStateToProps = (state) => {
   return {
-
+    friends: state.get('friends')
   }
 }
 
