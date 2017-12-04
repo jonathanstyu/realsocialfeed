@@ -18,8 +18,7 @@ class SettingsView extends React.Component {
       <View key={props}
         style={settingsstyles.cellContainer}
         >
-        <Text key={props} style={[settingsstyles.label,
-          this.props.darkMode ? darkstyle.cellCopyDark : null
+        <Text key={props} style={[settingsstyles.label
           ]}>
           {props}
         </Text>
@@ -33,20 +32,19 @@ class SettingsView extends React.Component {
   render = () => {
     return (
       <View style={[settingsstyles.settingsContainer,
-        (this.props.darkMode ? darkstyle.listDark : null)]}>
+        ]}>
         <FlatList style={[
-          (this.props.darkMode ? darkstyle.listDark : null)
+
           ]}
         keyExtractor={this._keyExtractor}
         renderItem={({item}) => this._renderItem(item)}
         data={Object.keys(this.props.settings)}
         />
         <TouchableHighlight
-          underlayColor={this.props.darkMode ? "white" : "red"}
-          style={[settingsstyles.buttonContainer,
-          (this.props.darkMode ? darkstyle.buttonDark : null)]}
-          onPress={this.props.emptyJobs}>
-            <Text style={settingsstyles.buttonStyle}>Delete Jobs</Text>
+          underlayColor={"white"}
+          style={[settingsstyles.buttonContainer]}
+          onPress={this.props.reset}>
+            <Text style={settingsstyles.buttonStyle}>Reset Data</Text>
         </TouchableHighlight>
       </View>
     )
@@ -55,8 +53,7 @@ class SettingsView extends React.Component {
 
 mapStateToProps = (state) => {
   return {
-    settings: state.get('settings'),
-    darkMode: state.get('settings')['Dark Mode']
+    settings: {}
   }
 }
 
@@ -68,9 +65,9 @@ mapDispatchToProps = (dispatch) => {
         settingKey: settingKey
       })
     },
-    emptyJobs: () => {
+    reset: () => {
       dispatch({
-        type: "empty_jobs"
+        type: "reset_data"
       })
     }
   }
