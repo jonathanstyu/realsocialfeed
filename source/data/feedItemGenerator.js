@@ -86,11 +86,11 @@ FeedItemGenerator.createEmails = (number=1, friends=[]) => {
 
 FeedItemGenerator.createNotifications = (number=1, friends=[]) => {
   var items = []
-  for (var i = 0; i < friends.length; i++) {
+  for (var i = 0; i < number; i++) {
     // Because not everyone has a notification
     items.push({
       'key': faker.fake("{{random.uuid}}"),
-      'about': friends[i].name,
+      'about': faker.random.arrayElement(friends).name,
       'notifiedDate': faker.date.recent(),
       "action": faker.lorem.sentence(),
     })

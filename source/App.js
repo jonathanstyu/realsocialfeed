@@ -31,13 +31,13 @@ class App extends Component<{}> {
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          systemIcon='downloads'
-          onPress={() => this.props.selectTab("Notifications")}
-          selected={this.props['selectedTab'] == "Notifications"}>
+          systemIcon='recents'
+          onPress={() => this.props.selectTab("ChatRoom")}
+          selected={this.props['selectedTab'] == "ChatRoom"}>
           <NavigatorIOS
             initialRoute={{
-              component: RealNotifications,
-              title: 'Notifications',
+              component: RealChatRoom,
+              title: 'Chat',
               showTabBar: true,
             }}
             navigationBarHidden={false}
@@ -46,13 +46,13 @@ class App extends Component<{}> {
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          systemIcon='recents'
-          onPress={() => this.props.selectTab("ChatRoom")}
-          selected={this.props['selectedTab'] == "ChatRoom"}>
+          systemIcon='downloads'
+          onPress={() => this.props.selectTab("Notifications")}
+          selected={this.props['selectedTab'] == "Notifications"}>
           <NavigatorIOS
             initialRoute={{
-              component: RealChatRoom,
-              title: 'Chat',
+              component: RealNotifications,
+              title: 'Notifications',
               showTabBar: true,
             }}
             navigationBarHidden={false}

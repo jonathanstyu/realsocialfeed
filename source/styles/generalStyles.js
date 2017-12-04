@@ -104,15 +104,20 @@ export const notificationstyle = StyleSheet.create({
   },
   HeadBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    alignItems: 'center',
   },
   Header: {
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingRight: 15
+  },
+  HeaderName: {
     fontWeight: 'bold',
     fontSize: 16
   },
   Subtitle: {
-    flex: 2,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    fontWeight: 'bold'
   },
   subjectLineStyle: {
     fontStyle: 'italic',

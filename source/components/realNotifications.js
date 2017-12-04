@@ -50,7 +50,7 @@ class RealNotifications extends Component<{}> {
         onPress={() => this._onPressItem(item)}>
         <View style={notificationstyle.cell}>
           <View style={notificationstyle.HeadBar}>
-            <Text numberOfLines={2}><Text style={notificationstyle.Header}>{item.about}</Text> did this amazing thing that you should totally know about.</Text>
+            <Text style={notificationstyle.Header} numberOfLines={2}><Text style={notificationstyle.HeaderName}>{item.about}</Text> did this amazing thing that you should totally know about.</Text>
             <Text style={notificationstyle.Subtitle}>
               {Moment(item.sent).format('ddd h:mm A')}
             </Text>
