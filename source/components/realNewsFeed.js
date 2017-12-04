@@ -45,7 +45,6 @@ class RealNewsFeed extends Component<{}> {
         <View style={newsfeed.textContainer}>
           <Text style={newsfeed.titleText}>{item.headline}</Text>
           <Text>{item.body}</Text>
-          <Text>{item.image}</Text>
         </View>
       </View>
     )

@@ -4,6 +4,7 @@ import faker from 'faker';
 
 export default class FeedItemGenerator { }
 
+// Used at the start of the app to make all your friends
 FeedItemGenerator.makeFriends = (number = 10) => {
   var friends = [];
   for (var i = 0; i < number; i++) {
@@ -30,7 +31,9 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
       'body': faker.lorem.paragraph(),
       'headline': faker.lorem.sentence(),
       'image': 'https://dummyimage.com/300/',
-      'poster': poster
+      'poster': poster,
+      "likes": faker.random.number(),
+      "comments": faker.random.number(),
     })
   }
 
@@ -63,5 +66,35 @@ FeedItemGenerator.createChat = (sender, number=1) => {
       }
     })
   }
+  return items;
+}
+
+FeedItemGenerator.createEmails = (number=1, friends=[]) => {
+  var items = []
+  for (var i = 0; i < friends.length; i++) {
+    items.push({
+      'key': faker.fake("{{random.uuid}}"),
+      'emailer': friends[i].name,
+      'sent': faker.date.recent(),
+      "emailSubjectLine": faker.lorem.sentence(),
+      "emailBody": faker.lorem.paragraphs()
+    })
+  }
+
+  return items;
+}
+
+FeedItemGenerator.createNotifications = (number=1, friends=[]) => {
+  var items = []
+  for (var i = 0; i < friends.length; i++) {
+    // Because not everyone has a notification
+    items.push({
+      'key': faker.fake("{{random.uuid}}"),
+      'about': friends[i].name,
+      'notifiedDate': faker.date.recent(),
+      "action": faker.lorem.sentence(),
+    })
+  }
+
   return items;
 }

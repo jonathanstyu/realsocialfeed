@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 
 import RealNewsFeed from './components/realNewsFeed';
 import RealChatRoom from './components/realchatroom';
+import RealNotifications from './components/realNotifications';
+// import RealEmailInbox from './components/realEmailInbox';
 import {general} from './styles/generalStyles';
 
 class App extends Component<{}> {
@@ -23,6 +25,21 @@ class App extends Component<{}> {
               showTabBar: true,
             }}
             navigationBarHidden={true}
+            style={{flex: 1}}
+            />
+        </TabBarIOS.Item>
+
+        <TabBarIOS.Item
+          systemIcon='downloads'
+          onPress={() => this.props.selectTab("Email")}
+          selected={this.props['selectedTab'] == "Email"}>
+          <NavigatorIOS
+            initialRoute={{
+              component: RealNotifications,
+              title: 'Notifications',
+              showTabBar: true,
+            }}
+            navigationBarHidden={false}
             style={{flex: 1}}
             />
         </TabBarIOS.Item>

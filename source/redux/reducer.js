@@ -1,4 +1,5 @@
 import {Map, Set} from 'immutable';
+import {AsyncStorage} from 'react-native'; 
 import _ from 'lodash';
 import FeedItemGenerator from '../data/feedItemGenerator'
 

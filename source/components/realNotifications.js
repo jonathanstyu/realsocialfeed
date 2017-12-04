@@ -7,23 +7,23 @@ import {SectionList, FlatList, StyleSheet, Image,
 import Moment from 'moment';
 import FeedItemGenerator from '../data/feedItemGenerator'
 import {connect} from 'react-redux';
-import {chatroom} from '../styles/generalStyles';
+import {notificationstyle} from '../styles/generalStyles';
 
-import RealChatView from './realchatview';
+// import RealEmail from './realEmailView';
 
-class RealChatRoom extends Component<{}> {
+class RealNotifications extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
       refreshing: false,
-      threads: []
+      notifications: []
     }
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createChatThreads(20, this.props.friends)
+      threads: FeedItemGenerator.createNotifications(10, this.props.friends)
     })
   }
 
@@ -35,25 +35,24 @@ class RealChatRoom extends Component<{}> {
     this.setState({refreshing: true})
   }
 
-  _onPressItem = (sender) => {
+  _onPressItem = (notification) => {
     this.props.navigator.push({
-      passProps: {sender: sender},
-      component: RealChatView,
+      passProps: {notification: notification},
+      component: RealNotificationScreen,
       showTabBar: false,
-      title: sender
+      title: notification.about
     })
   }
 
   _renderItem = (item) => {
-    // {Moment.unix(item.lastsent).format("ddd ")}
     return (
       <TouchableHighlight
-        onPress={() => this._onPressItem(item.chatSender)}>
-        <View style={chatroom.cell}>
-          <View style={chatroom.chatHeadBar}>
-            <Text style={chatroom.chatHeader}>{item.chatSender}</Text>
-            <Text style={chatroom.chatSubtitle}>
-              {Moment(item.lastsent).format('ddd h:mm A')}
+        onPress={() => this._onPressItem(item)}>
+        <View style={notificationstyle.cell}>
+          <View style={notificationstyle.HeadBar}>
+            <Text numberOfLines={2}><Text style={notificationstyle.Header}>{item.about}</Text> did this amazing thing that you should totally know about.</Text>
+            <Text style={notificationstyle.Subtitle}>
+              {Moment(item.sent).format('ddd h:mm A')}
             </Text>
           </View>
         </View>
@@ -63,7 +62,7 @@ class RealChatRoom extends Component<{}> {
 
   render() {
     return (
-      <FlatList style={chatroom.list}
+      <FlatList style={notificationstyle.list}
         data={this.state.threads}
         keyExtractor={this._keyExtractor}
         renderItem={({item}) => this._renderItem(item)}
@@ -84,4 +83,4 @@ mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RealChatRoom)
+export default connect(mapStateToProps, mapDispatchToProps)(RealNotifications)

@@ -7,11 +7,11 @@ import {SectionList, FlatList, StyleSheet, Image,
 import Moment from 'moment';
 import FeedItemGenerator from '../data/feedItemGenerator'
 import {connect} from 'react-redux';
-import {chatroom} from '../styles/generalStyles';
+import {emailstyle} from '../styles/generalStyles';
 
-import RealChatView from './realchatview';
+import RealEmail from './realEmailView';
 
-class RealChatRoom extends Component<{}> {
+class RealEmailInbox extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class RealChatRoom extends Component<{}> {
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createChatThreads(20, this.props.friends)
+      threads: FeedItemGenerator.createEmails(20, this.props.friends)
     })
   }
 
@@ -35,27 +35,31 @@ class RealChatRoom extends Component<{}> {
     this.setState({refreshing: true})
   }
 
-  _onPressItem = (sender) => {
+  _onPressItem = (email) => {
     this.props.navigator.push({
-      passProps: {sender: sender},
-      component: RealChatView,
+      passProps: {email: email},
+      component: RealEmail,
       showTabBar: false,
-      title: sender
+      title: email.emailer
     })
   }
 
   _renderItem = (item) => {
-    // {Moment.unix(item.lastsent).format("ddd ")}
     return (
       <TouchableHighlight
-        onPress={() => this._onPressItem(item.chatSender)}>
-        <View style={chatroom.cell}>
-          <View style={chatroom.chatHeadBar}>
-            <Text style={chatroom.chatHeader}>{item.chatSender}</Text>
-            <Text style={chatroom.chatSubtitle}>
-              {Moment(item.lastsent).format('ddd h:mm A')}
+        onPress={() => this._onPressItem(item)}>
+        <View style={emailstyle.cell}>
+          <View style={emailstyle.emailHeadBar}>
+            <Text style={emailstyle.emailHeader}>{item.emailer}</Text>
+            <Text style={emailstyle.emailSubtitle}>
+              {Moment(item.sent).format('ddd h:mm A')}
             </Text>
           </View>
+          <Text
+            numberOfLines={1}
+            style={emailstyle.subjectLineStyle}
+            >{item.emailSubjectLine}</Text>
+          <Text numberOfLines={3}>{item.emailBody}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -63,7 +67,7 @@ class RealChatRoom extends Component<{}> {
 
   render() {
     return (
-      <FlatList style={chatroom.list}
+      <FlatList style={emailstyle.list}
         data={this.state.threads}
         keyExtractor={this._keyExtractor}
         renderItem={({item}) => this._renderItem(item)}
@@ -84,4 +88,4 @@ mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RealChatRoom)
+export default connect(mapStateToProps, mapDispatchToProps)(RealEmailInbox)

@@ -68,3 +68,91 @@ export const chat = StyleSheet.create({
 
   }
 })
+
+export const emailstyle = StyleSheet.create({
+  screen: {
+    flex: 1
+  },
+  cell: {
+    margin: 10
+  },
+  emailHeadBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  emailHeader: {
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  emailSubtitle: {
+    fontStyle: 'italic'
+  },
+  subjectLineStyle: {
+    fontStyle: 'italic',
+    fontSize: 15,
+    paddingTop: 5,
+    paddingBottom: 5
+  }
+})
+
+export const notificationstyle = StyleSheet.create({
+  screen: {
+    flex: 1
+  },
+  cell: {
+    margin: 10
+  },
+  HeadBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  Header: {
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  Subtitle: {
+    flex: 2,
+    fontStyle: 'italic'
+  },
+  subjectLineStyle: {
+    fontStyle: 'italic',
+    fontSize: 15,
+    paddingTop: 5,
+    paddingBottom: 5
+  }
+})
+
+export const settingsstyles = StyleSheet.create({
+  label: {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  settingsContainer: {
+    flex: 3,
+    flexDirection: "column",
+    paddingBottom: 65,
+  },
+  cellContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  mainContainer: {
+    marginTop: 64,
+    flex: 1
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 15,
+    margin: 10,
+    borderWidth: 1,
+    borderRadius: 10
+  },
+  buttonStyle: {
+    color: 'red',
+    fontWeight: "bold",
+    fontSize: 20,
+  }
+});
