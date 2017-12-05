@@ -32,7 +32,8 @@ export const newsfeed = StyleSheet.create({
   },
   titleText: {
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 16,
+    paddingBottom: 10,
   },
   image: {
     marginTop: 5,
@@ -40,6 +41,11 @@ export const newsfeed = StyleSheet.create({
     width: null,
     height: 200,
     resizeMode: Image.resizeMode.contain
+  },
+  actionBar: {
+    paddingTop: 10,
+    flexDirection: "row",
+    justifyContent: 'space-between'
   }
 })
 

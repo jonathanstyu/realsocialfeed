@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {SectionList, FlatList, StyleSheet, Image,
   Text, View, RefreshControl,
-  AsyncStorage, TouchableHighlight,
-  ActivityIndicator } from 'react-native';
+  AsyncStorage, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
 import {general, newsfeed} from '../styles/generalStyles';
 
-// Generators
-import FeedItemGenerator from '../data/feedItemGenerator'
+// Generators and Components
+import FeedItemGenerator from '../data/feedItemGenerator';
+import RealNewsFeedItem from './realNewsFeedItem';
 
 class RealNewsFeed extends Component<{}> {
   constructor(props) {
@@ -21,7 +21,7 @@ class RealNewsFeed extends Component<{}> {
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createFeedStories(30, this.props.friends)
+      threads: FeedItemGenerator.createFeedStories(20, this.props.friends)
     })
   }
 
@@ -34,24 +34,11 @@ class RealNewsFeed extends Component<{}> {
   }
 
   _renderItem = (item) => {
-    return (
-      <View style={newsfeed.mainCellLayout}>
-        <Text style={newsfeed.avatarText}>{item.poster} says ...</Text>
-        <Image
-          style={newsfeed.image}
-          source={{uri: item.image}}
-          backgroundColor='darkred'
-          />
-        <View style={newsfeed.textContainer}>
-          <Text style={newsfeed.titleText}>{item.headline}</Text>
-          <Text>{item.body}</Text>
-        </View>
-      </View>
-    )
+    return <RealNewsFeedItem item={item} />
   }
 
   _endReached = async () => {
-    var newItems = FeedItemGenerator.createFeedStories(30, this.props.friends);
+    var newItems = FeedItemGenerator.createFeedStories(20, this.props.friends);
     this.setState({
       threads: this.state['threads'].concat(newItems)
     })

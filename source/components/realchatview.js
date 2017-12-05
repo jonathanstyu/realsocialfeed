@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-import FeedItemGenerator from '../data/feedItemGenerator'
+import FeedItemGenerator from '../data/feedItemGenerator';
+
 import {chat} from '../styles/generalStyles';
 import faker from 'faker';
 
