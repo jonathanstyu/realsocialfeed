@@ -18,12 +18,13 @@ FeedItemGenerator.makeFriends = (number = 10) => {
 
 FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
   var items = []
+  var imageTypes = ['pic', 'svg', 'canvas']
   for (var i = 0; i < number; i++) {
     var poster;
     if (friends.length == 0) {
       poster = faker.fake("{{name.firstName}} {{name.lastName}}");
     } else {
-      poster = friends[Math.floor((Math.random() * friends.length))].name;
+      poster = faker.random.arrayElement(friends).name;
     }
 
     items.push({
@@ -31,6 +32,7 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
       'body': faker.lorem.paragraph(),
       'headline': faker.lorem.sentence(),
       'image': 'https://dummyimage.com/300/',
+      'imageType': faker.random.arrayElement(imageTypes),
       'poster': poster,
       "likes": faker.random.number(),
       "comments": faker.random.number(),

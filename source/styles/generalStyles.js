@@ -22,6 +22,12 @@ export const newsfeed = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     flexDirection: 'column',
+    shadowColor: 'black',
+    shadowOffset: {
+      height: 3
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.3
   },
   avatarText: {
     fontWeight: "bold",

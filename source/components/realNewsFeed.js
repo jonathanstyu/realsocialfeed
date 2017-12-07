@@ -4,6 +4,8 @@ import {SectionList, FlatList, StyleSheet, Image,
   AsyncStorage, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
 import {general, newsfeed} from '../styles/generalStyles';
+import Toast, {DURATION} from 'react-native-easy-toast'
+
 
 // Generators and Components
 import FeedItemGenerator from '../data/feedItemGenerator';
@@ -19,9 +21,10 @@ class RealNewsFeed extends Component<{}> {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
+    var items = FeedItemGenerator.createFeedStories(20, this.props.friends);
     this.setState({
-      threads: FeedItemGenerator.createFeedStories(20, this.props.friends)
+      threads: items
     })
   }
 
@@ -34,14 +37,20 @@ class RealNewsFeed extends Component<{}> {
   }
 
   _renderItem = (item) => {
-    return <RealNewsFeedItem item={item} />
+    return <RealNewsFeedItem item={item} itemHandler={this._itemPressed} />
   }
 
   _endReached = async () => {
     var newItems = FeedItemGenerator.createFeedStories(20, this.props.friends);
-    this.setState({
-      threads: this.state['threads'].concat(newItems)
+    this.setState((previousState) => {
+      return {
+        threads: previousState.threads.concat(newItems)
+      }
     })
+  }
+
+  _itemPressed = () => {
+    console.log("HELLO");
   }
 
   render() {
