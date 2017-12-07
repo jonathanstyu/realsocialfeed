@@ -16,7 +16,8 @@ class App extends Component<{}> {
     return (
       <TabBarIOS style={general.screen}>
         <TabBarIOS.Item
-          systemIcon='featured'
+          icon={require('./assets/feed.png')}
+          title="Feed"
           onPress={() => this.props.selectTab("RealNewsFeed")}
           selected={this.props['selectedTab'] == "RealNewsFeed"}>
           <NavigatorIOS
@@ -31,7 +32,8 @@ class App extends Component<{}> {
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          systemIcon='recents'
+          icon={require('./assets/chat.png')}
+          title="Chat"
           onPress={() => this.props.selectTab("ChatRoom")}
           selected={this.props['selectedTab'] == "ChatRoom"}>
           <NavigatorIOS
@@ -46,7 +48,8 @@ class App extends Component<{}> {
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          systemIcon='downloads'
+          icon={require('./assets/globe.png')}
+          title="Notifications"
           onPress={() => this.props.selectTab("Notifications")}
           selected={this.props['selectedTab'] == "Notifications"}>
           <NavigatorIOS
@@ -61,7 +64,7 @@ class App extends Component<{}> {
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          systemIcon='recents'
+          systemIcon='more'
           onPress={() => this.props.selectTab("Settings")}
           selected={this.props['selectedTab'] == "Settings"}>
           <NavigatorIOS
