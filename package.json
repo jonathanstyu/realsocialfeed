@@ -7,11 +7,14 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"articles": "^0.2.1",
 		"faker": "^4.1.0",
 		"immutable": "^3.8.2",
 		"lodash": "^4.17.4",
 		"magic-eye": "^0.1.0",
 		"moment": "^2.19.3",
+		"natural": "^0.5.4",
+		"randy": "^1.5.1",
 		"react": "16.0.0",
 		"react-native": "0.50.1",
 		"react-native-canvas": "^0.1.20",

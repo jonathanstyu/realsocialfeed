@@ -13,6 +13,22 @@ import {general} from './styles/generalStyles';
 
 class App extends Component<{}> {
   render() {
+    // <TabBarIOS.Item
+    //   icon={require('./assets/chat.png')}
+    //   title="Chat"
+    //   onPress={() => this.props.selectTab("ChatRoom")}
+    //   selected={this.props['selectedTab'] == "ChatRoom"}>
+    //   <NavigatorIOS
+    //     initialRoute={{
+    //       component: RealChatRoom,
+    //       title: 'Chat',
+    //       showTabBar: true,
+    //     }}
+    //     navigationBarHidden={false}
+    //     style={{flex: 1}}
+    //     />
+    // </TabBarIOS.Item>
+
     return (
       <TabBarIOS style={general.screen}>
         <TabBarIOS.Item
@@ -27,22 +43,6 @@ class App extends Component<{}> {
               showTabBar: true,
             }}
             navigationBarHidden={true}
-            style={{flex: 1}}
-            />
-        </TabBarIOS.Item>
-
-        <TabBarIOS.Item
-          icon={require('./assets/chat.png')}
-          title="Chat"
-          onPress={() => this.props.selectTab("ChatRoom")}
-          selected={this.props['selectedTab'] == "ChatRoom"}>
-          <NavigatorIOS
-            initialRoute={{
-              component: RealChatRoom,
-              title: 'Chat',
-              showTabBar: true,
-            }}
-            navigationBarHidden={false}
             style={{flex: 1}}
             />
         </TabBarIOS.Item>

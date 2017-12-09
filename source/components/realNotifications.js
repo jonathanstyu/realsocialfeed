@@ -23,7 +23,7 @@ class RealNotifications extends Component<{}> {
 
   componentDidMount = async () => {
     this.setState({
-      threads: FeedItemGenerator.createNotifications(10, this.props.friends)
+      threads: []
     })
   }
 

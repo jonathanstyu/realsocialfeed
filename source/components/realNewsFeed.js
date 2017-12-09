@@ -3,13 +3,16 @@ import {SectionList, FlatList, StyleSheet, Image,
   Text, View, RefreshControl,
   AsyncStorage, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
+import faker from 'faker';
 import {general, newsfeed} from '../styles/generalStyles';
 import Toast, {DURATION} from 'react-native-easy-toast'
-
 
 // Generators and Components
 import FeedItemGenerator from '../data/feedItemGenerator';
 import RealNewsFeedItem from './realNewsFeedItem';
+import RealNewsViewer from './realNewsViewer';
+
+
 
 class RealNewsFeed extends Component<{}> {
   constructor(props) {
@@ -22,18 +25,20 @@ class RealNewsFeed extends Component<{}> {
   }
 
   componentDidMount = () => {
-    var items = FeedItemGenerator.createFeedStories(20, this.props.friends);
+    var items = FeedItemGenerator.createFeedStories(10, this.props.friends);
     this.setState({
       threads: items
     })
+
+    // setInterval(this.showToast, faker.random.number({min: 1000, max: 10000}))
+  }
+
+  showToast = () => {
+    this.refs.toast.show("hello", DURATION.LONG)
   }
 
   _keyExtractor = (item, index) => {
     return item.key;
-  }
-
-  _onRefresh = async () => {
-    this.setState({refreshing: true})
   }
 
   _renderItem = (item) => {
@@ -50,18 +55,25 @@ class RealNewsFeed extends Component<{}> {
   }
 
   _itemPressed = () => {
-    console.log("HELLO");
+    this.props.navigator.push({
+      title: 'Scene',
+      component: RealNewsViewer
+    })
   }
 
   render() {
     return(
-      <FlatList style={newsfeed.list}
-        data={this.state.threads}
-        keyExtractor={this._keyExtractor}
-        onEndReachedThreshold={0.7}
-        onEndReached={this._endReached}
-        renderItem={({item}) => this._renderItem(item)}
-        />
+      <View style={{flex: 1}}>
+        <FlatList style={newsfeed.list}
+          data={this.state.threads}
+          keyExtractor={this._keyExtractor}
+          onEndReachedThreshold={0.7}
+          onEndReached={this._endReached}
+          renderItem={({item}) => this._renderItem(item)}
+          />
+          <Toast ref='toast'
+            />
+      </View>
     )
   }
 }

@@ -4,9 +4,11 @@ import {TouchableOpacity, StyleSheet, Image, Dimensions, WebView,
 import {general, newsfeed} from '../styles/generalStyles';
 
 import faker from 'faker';
-import Canvas from 'react-native-canvas';
 import Svg, {Circle} from 'react-native-svg';
-import html from './helpers/canvas.html';
+
+// Webview Components
+import magiceyeTextHTML from './helpers/magiceye-text.html';
+import aframeHTML from './helpers/aframe.html';
 
 export default class RealNewsFeedItem extends Component<{}> {
   constructor(props) {
@@ -15,7 +17,7 @@ export default class RealNewsFeedItem extends Component<{}> {
     this.state = {
       likes: faker.random.number(35),
       comments: faker.random.number(35),
-      shares: faker.random.number(35)
+      shares: faker.random.number(35),
     }
   }
 
@@ -44,16 +46,6 @@ export default class RealNewsFeedItem extends Component<{}> {
     })
   }
 
-  // handleCanvas = (canvas) => {
-  //   try {
-  //     const ctx = canvas.getContext('2d');
-  //     ctx.fillStyle = 'purple';
-  //     ctx.fillRect(0, 0, 100, 100);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   render() {
     var item = this.props.item;
     var visual = null;
@@ -63,7 +55,7 @@ export default class RealNewsFeedItem extends Component<{}> {
           <Image
             style={newsfeed.image}
             source={{uri: item.image}}
-            backgroundColor='darkred'
+            backgroundColor={item.loadingColor}
             />
         )
         break;
@@ -71,20 +63,33 @@ export default class RealNewsFeedItem extends Component<{}> {
       case 'svg':
         var {height, width} = Dimensions.get('window');
         visual = (
-          <Svg width={width} height='250'>
-            <Circle cx='50' cy='50' stroke='blue' fill='green' r='45' />
+          <Svg width={width} height='400'>
+            {
+              item.svgData ? <Circle cx='50' cy='50' stroke='blue' fill='green' r='45' /> : <Circle cx='50' cy='50' stroke='blue' fill='yellow' r='45' />
+            }
           </Svg>
         )
-        // Dimensions.addEventListener('window', )
         break;
 
-      case 'canvas':
-        // <Canvas ref={this.handleCanvas} />
+      case 'magic-eye':
         var {height, width} = Dimensions.get('window');
         visual = (
           <View>
             <WebView
-              source={html}
+              source={magiceyeTextHTML}
+              style={{width: width, height: 300}}
+              scrollEnabled={false}
+              />
+          </View>
+        )
+        break;
+
+      case 'aframe':
+        var {height, width} = Dimensions.get('window');
+        visual = (
+          <View>
+            <WebView
+              source={aframeHTML}
               style={{width: width, height: 300}}
               scrollEnabled={false}
               />

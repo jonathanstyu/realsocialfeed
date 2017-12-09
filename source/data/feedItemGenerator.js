@@ -16,9 +16,10 @@ FeedItemGenerator.makeFriends = (number = 10) => {
   return friends;
 }
 
+// Making the story for the items.
 FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
   var items = []
-  var imageTypes = ['pic', 'svg', 'canvas']
+  var imageTypes = ['pic', 'svg', 'magic-eye']
   for (var i = 0; i < number; i++) {
     var poster;
     if (friends.length == 0) {
@@ -31,17 +32,26 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
       'key': faker.random.uuid(),
       'body': faker.lorem.paragraph(),
       'headline': faker.lorem.sentence(),
-      'image': 'https://dummyimage.com/300/',
+      'loadingColor': faker.fake('rgba({{random.number(255)}}, {{random.number(255)}}, {{random.number(255)}}, 1.0)'),
+      'image': "https://lorempixel.com/400/300",
       'imageType': faker.random.arrayElement(imageTypes),
       'poster': poster,
-      "likes": faker.random.number(),
-      "comments": faker.random.number(),
+      'svgData': this.imageType == 'svg' ? FeedItemGenerator.createSVG() : null
     })
   }
 
   return items;
 }
 
+FeedItemGenerator.createSVG = () => {
+  var numberItems = faker.random.number(10);
+  for (var i = 0; i < numberItems; i++) {
+    array[i]
+  }
+}
+
+
+// Not exposed to public.
 FeedItemGenerator.createChatThreads = (number=1, friends=[]) => {
   var items = []
   for (var i = 0; i < friends.length; i++) {
@@ -56,6 +66,7 @@ FeedItemGenerator.createChatThreads = (number=1, friends=[]) => {
   return items;
 }
 
+// Responding all!
 FeedItemGenerator.createChat = (sender, number=1) => {
   var items = [];
   for (var i = 0; i < number; i++) {
@@ -71,6 +82,7 @@ FeedItemGenerator.createChat = (sender, number=1) => {
   return items;
 }
 
+// Mails
 FeedItemGenerator.createEmails = (number=1, friends=[]) => {
   var items = []
   for (var i = 0; i < friends.length; i++) {
@@ -100,3 +112,24 @@ FeedItemGenerator.createNotifications = (number=1, friends=[]) => {
 
   return items;
 }
+
+// Create a random image. Fail.
+// FeedItemGenerator.createImage = () => {
+//   var width = 320, height = 180;
+//   console.log(Buffer);
+//   var frameData = new Buffer(width * height * 4);
+//   var i = 0;
+//   while (i < frameData.length) {
+//     frameData[i++] = 0xFF; // red
+//     frameData[i++] = 0x00; // green
+//     frameData[i++] = 0x00; // blue
+//     frameData[i++] = 0xFF; // alpha - ignored in JPEGs
+//   }
+//   var rawImageData = {
+//     data: frameData,
+//     width: width,
+//     height: height
+//   };
+//   var jpegImageData = jpeg.encode(rawImageData, 50);
+//   return jpegImageData;
+// }
