@@ -19,7 +19,7 @@ FeedItemGenerator.makeFriends = (number = 10) => {
 // Making the story for the items.
 FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
   var items = []
-  var imageTypes = ['pic', 'svg', 'magic-eye']
+  var imageTypes = ['svg', 'magic-eye-text', 'magic-eye-canvas']
   for (var i = 0; i < number; i++) {
     var poster;
     if (friends.length == 0) {
@@ -33,7 +33,6 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
       'body': faker.lorem.paragraph(),
       'headline': faker.lorem.sentence(),
       'loadingColor': faker.fake('rgba({{random.number(255)}}, {{random.number(255)}}, {{random.number(255)}}, 1.0)'),
-      'image': "https://lorempixel.com/400/300",
       'imageType': faker.random.arrayElement(imageTypes),
       'poster': poster,
       'svgData': this.imageType == 'svg' ? FeedItemGenerator.createSVG() : null
@@ -115,21 +114,31 @@ FeedItemGenerator.createNotifications = (number=1, friends=[]) => {
 
 // Create a random image. Fail.
 // FeedItemGenerator.createImage = () => {
-//   var width = 320, height = 180;
-//   console.log(Buffer);
-//   var frameData = new Buffer(width * height * 4);
-//   var i = 0;
-//   while (i < frameData.length) {
-//     frameData[i++] = 0xFF; // red
-//     frameData[i++] = 0x00; // green
-//     frameData[i++] = 0x00; // blue
-//     frameData[i++] = 0xFF; // alpha - ignored in JPEGs
-//   }
-//   var rawImageData = {
-//     data: frameData,
-//     width: width,
-//     height: height
-//   };
-//   var jpegImageData = jpeg.encode(rawImageData, 50);
-//   return jpegImageData;
+//   var data = new Uint8Array([
+//   137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,0,8,0,0,
+//   0,8,8,2,0,0,0,75,109,41,220,0,0,0,34,73,68,65,84,8,215,99,120,
+//   173,168,135,21,49,0,241,255,15,90,104,8,33,129,83,7,97,163,136,
+//   214,129,93,2,43,2,0,181,31,90,179,225,252,176,37,0,0,0,0,73,69,
+//   78,68,174,66,96,130]);
+  // var blob = new Blob([data], { type: "image/png" });
+  // var url = URL.createObjectURL(blob);
+  // var img = new Image();
+  // img.src = url;
+  // return url;
+  // var width = 320, height = 180;
+  // var frameData = new Uint8Array(width * height * 4);
+  // var i = 0;
+  // while (i < frameData.length) {
+  //   frameData[i++] = 0xFF; // red
+  //   frameData[i++] = 0x00; // green
+  //   frameData[i++] = 0x00; // blue
+  //   frameData[i++] = 0xFF; // alpha - ignored in JPEGs
+  // }
+  // var rawImageData = {
+  //   data: frameData,
+  //   width: width,
+  //   height: height
+  // };
+  // var jpegImageData = jpeg.encode(rawImageData, 50);
+  // return jpegImageData;
 // }

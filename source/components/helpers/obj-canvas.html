@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scaleable=no' name='viewport'>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width=300 height=300></canvas>
+  </body>
+  <footer>
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.fillRect(25, 25, 100, 100);
+        ctx.clearRect(45, 45, 60, 60);
+        ctx.strokeRect(50, 50, 50, 50);
+      }
+    </script>
+  </footer>
+</html>

@@ -14,9 +14,16 @@ export const general = StyleSheet.create({
   }
 })
 
+export const newsViewer = StyleSheet.create({
+  normal: {
+    flex: 1
+  }
+})
+
 export const newsfeed = StyleSheet.create({
   list: {
     flex: 1,
+    backgroundColor: 'whitesmoke'
   },
   mainCellLayout: {
     marginTop: 5,

@@ -5,26 +5,25 @@
       body {
         margin: 0;
         padding: 0;
+        background-color: purple;
         display: flex;
         justify-content: center;
-        background-color: lightgray;
       }
     </style>
     <script src="./magiceye.min.js" type="text/javascript"></script>
-    <script src="./TextDepthMapper.js" type="text/javascript"></script>
     <script src="./CanvasDepthMapper.js" type="text/javascript"></script>
   </head>
   <body>
-    <img id="canvas" width="300px" height='300px' src/>
+    <canvas id="canvas" width=300 height=300></canvas>
   </body>
   <footer>
-    <script type="text/javascript">
-      var canvas = document.getElementById('canvas');
-      MagicEye.render({
-        el: 'canvas',
-        colors: ['0f0','ff0', 'f0f', '0ff', 'fff', '000'],
-        depthMapper: new MagicEye.TextDepthMapper('hello')
-      })
-    </script>
+      <script type="text/javascript">
+        var canvas = document.getElementById('canvas');
+        MagicEye.render({
+          el: 'canvas',
+          colors: ['0f0', '00f', 'f00', 'ff0', 'f0f', '0ff'],
+          depthMapper: new MagicEye.CanvasDepthMapper(canvas)
+        })
+      </script>
   </footer>
 </html>

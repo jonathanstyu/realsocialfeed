@@ -4,10 +4,11 @@ import {TouchableOpacity, StyleSheet, Image, Dimensions, WebView,
 import {general, newsfeed} from '../styles/generalStyles';
 
 import faker from 'faker';
-import Svg, {Circle} from 'react-native-svg';
 
 // Webview Components
+import particles from './helpers/obj-canvas.html';
 import magiceyeTextHTML from './helpers/magiceye-text.html';
+import magiceyeCanvasHTML from './helpers/magiceye-canvas.html';
 import aframeHTML from './helpers/aframe.html';
 
 export default class RealNewsFeedItem extends Component<{}> {
@@ -50,33 +51,38 @@ export default class RealNewsFeedItem extends Component<{}> {
     var item = this.props.item;
     var visual = null;
     switch (item.imageType) {
-      case 'pic':
-        visual = (
-          <Image
-            style={newsfeed.image}
-            source={{uri: item.image}}
-            backgroundColor={item.loadingColor}
-            />
-        )
-        break;
-
       case 'svg':
         var {height, width} = Dimensions.get('window');
         visual = (
-          <Svg width={width} height='400'>
-            {
-              item.svgData ? <Circle cx='50' cy='50' stroke='blue' fill='green' r='45' /> : <Circle cx='50' cy='50' stroke='blue' fill='yellow' r='45' />
-            }
-          </Svg>
+          <View>
+            <WebView
+              source={particles}
+              style={{width: width, height: 300}}
+              scrollEnabled={false}
+              />
+          </View>
         )
         break;
 
-      case 'magic-eye':
+      case 'magic-eye-text':
         var {height, width} = Dimensions.get('window');
         visual = (
           <View>
             <WebView
               source={magiceyeTextHTML}
+              style={{width: width, height: 300}}
+              scrollEnabled={false}
+              />
+          </View>
+        )
+        break;
+
+      case 'magic-eye-canvas':
+        var {height, width} = Dimensions.get('window');
+        visual = (
+          <View>
+            <WebView
+              source={magiceyeCanvasHTML}
               style={{width: width, height: 300}}
               scrollEnabled={false}
               />
