@@ -1,6 +1,6 @@
 import _ from 'lodash';
-// import Sentencer from 'sentencer';
 import faker from 'faker';
+import TextGenerator from './textGenerator';
 
 export default class FeedItemGenerator { }
 
@@ -31,7 +31,7 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
     items.push({
       'key': faker.random.uuid(),
       'body': faker.lorem.paragraph(),
-      'headline': faker.lorem.sentence(),
+      'headline': TextGenerator.makeHeadline(),
       'loadingColor': faker.fake('rgba({{random.number(255)}}, {{random.number(255)}}, {{random.number(255)}}, 1.0)'),
       'imageType': faker.random.arrayElement(imageTypes),
       'poster': poster,
