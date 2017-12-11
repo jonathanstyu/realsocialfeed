@@ -5,10 +5,8 @@ import {
 import {connect} from 'react-redux';
 
 import RealNewsFeed from './components/realNewsFeed';
-import RealChatRoom from './components/realchatroom';
 import SettingsView from './components/settings';
 import RealNotifications from './components/realNotifications';
-// import RealEmailInbox from './components/realEmailInbox';
 import {general} from './styles/generalStyles';
 
 class App extends Component<{}> {
