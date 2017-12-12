@@ -19,7 +19,7 @@ FeedItemGenerator.makeFriends = (number = 10) => {
 // Making the story for the items.
 FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
   var items = []
-  var imageTypes = ['svg', 'magic-eye-text', 'magic-eye-canvas']
+  var imageTypes = ['svg', 'magic-eye-text', 'magic-eye-canvas'];
   for (var i = 0; i < number; i++) {
     var poster;
     if (friends.length == 0) {
@@ -30,8 +30,8 @@ FeedItemGenerator.createFeedStories = (number=1, friends=[]) => {
 
     items.push({
       'key': faker.random.uuid(),
-      'body': faker.lorem.paragraph(),
-      'headline': TextGenerator.makeHeadline(),
+      'body': TextGenerator.make({}, false),
+      'headline': TextGenerator.make(),
       'loadingColor': faker.fake('rgba({{random.number(255)}}, {{random.number(255)}}, {{random.number(255)}}, 1.0)'),
       'imageType': faker.random.arrayElement(imageTypes),
       'poster': poster,
