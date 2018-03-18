@@ -110,7 +110,7 @@ export default class RealNewsFeedItem extends Component<{}> {
       <View style={newsfeed.mainCellLayout}>
         <Text style={newsfeed.avatarText}>{item.poster} says ...</Text>
         <RealFeedErrorHandler>
-          <TouchableOpacity onPress={this.props.itemHandler}>
+          <TouchableOpacity onPress={this.props.itemHandler} style={newsfeed.mainCellVisual}>
             {visual}
           </TouchableOpacity>
         </RealFeedErrorHandler>

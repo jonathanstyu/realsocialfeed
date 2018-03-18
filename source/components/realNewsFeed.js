@@ -42,7 +42,11 @@ class RealNewsFeed extends Component<{}> {
   }
 
   _renderItem = (item) => {
-    return <RealNewsFeedItem item={item} itemHandler={this._itemPressed} />
+    return (
+    <View>
+      <RealNewsFeedItem item={item} itemHandler={this._itemPressed} />
+      <View style={{backgroundColor: 'gray', paddingTop: 10}}/>
+    </View>)
   }
 
   _endReached = async () => {

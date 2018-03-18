@@ -30,6 +30,8 @@ export const newsfeed = StyleSheet.create({
     marginBottom: 5,
     flexDirection: 'column',
     shadowColor: 'black',
+  },
+  mainCellVisual: {
     shadowOffset: {
       height: 3
     },
@@ -62,64 +64,6 @@ export const newsfeed = StyleSheet.create({
   }
 })
 
-export const chatroom = StyleSheet.create({
-  screen: {
-    flex: 1
-  },
-  cell: {
-    margin: 10
-  },
-  chatHeadBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  chatHeader: {
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-  chatSubtitle: {
-    fontStyle: 'italic'
-  }
-})
-
-export const chat = StyleSheet.create({
-  footerContainer: {
-    marginTop: 5,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
-  },
-  footerText: {
-    fontSize: 14,
-    color: '#aaa',
-  }
-})
-
-export const emailstyle = StyleSheet.create({
-  screen: {
-    flex: 1
-  },
-  cell: {
-    margin: 10
-  },
-  emailHeadBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  emailHeader: {
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-  emailSubtitle: {
-    fontStyle: 'italic'
-  },
-  subjectLineStyle: {
-    fontStyle: 'italic',
-    fontSize: 15,
-    paddingTop: 5,
-    paddingBottom: 5
-  }
-})
 
 export const notificationstyle = StyleSheet.create({
   screen: {
